@@ -89,17 +89,8 @@
 			e.preventDefault();
 			e.stopPropagation();
 			if ($dropdown.data('status') =='closed') {
-				function setStatus() {
-					newStatus = "closed"
-				}
 				open();
 			} else {
-				function getStatus() {
-					return
-					{
-						status: "open"
-					}
-				}
 				close();
 			}
 			if (controlsMegaMenu) {
