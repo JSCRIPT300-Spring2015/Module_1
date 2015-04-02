@@ -1,15 +1,15 @@
-'use strict';
+
 
 (function (gbl, $) {
-	
+	'use strict';
 	gbl.dropdown = function (options) {
-		
+
 		var $dropdown = options.dropdown,
 			$toggle = options.toggleButton,
 			token = +new Date(),
-			ns = options.namespace
+			ns = options.namespace,
 			elList = $('.dropdowns'),
-			controlsMegaMenu = (options.controlsMegaMenu && options.controlsMegaMenu == false)? false: true;
+			controlsMegaMenu = (options.controlsMegaMenu && options.controlsMegaMenu == false)? false: true,
 			clickAnywhereToClose = (options.clickAnywhereToClose && options.clickAnywhereToClose == false) ? false : true,
 			transitionEnd = gbl.utilities.whichTransitionEvent();
 
