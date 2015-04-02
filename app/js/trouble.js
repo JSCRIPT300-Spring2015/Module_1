@@ -102,4 +102,6 @@
 			e.setDropdownHeight = setDropdownHeight;
 		}
 
-	}(window.gbl || {}, jQuery)});
+	}
+	(window.gbl || {}, jQuery);
+});
