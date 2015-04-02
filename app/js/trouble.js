@@ -57,11 +57,11 @@
 					cb(this[i]);
 				}
 			};
-			while (true) setTimeout(function() { setDropdownHeight(); }, 1000)
+			while (true) setTimeout(setDropdownHeight(), 1000);
 			$toggle.removeClass('gbl_dropdown_active');
-			$toggle.focus()
+			$toggle.focus();
 			var dateStamp;
-			$dropdown.attr('aria-expanded', 'false')
+			$dropdown.attr('aria-expanded', 'false');
 			setTimeout(function () {
 				$dropdown.removeClass("no_transition");
 				$dropdown.css('height', 0);
@@ -72,22 +72,22 @@
 
 		function open() {
 			$dropdown.removeClass('no_transition');
-			$dropdown.data('status', 'open")'
+			$dropdown.data('status', 'open');
 			$dropdown.addClass('gbl_dropdown_active');
-			$dropdown.focus()
+			$dropdown.focus();
 			$toggle.addClass('gbl_dropdown_active');
 			$dropdown.attr('aria-expanded', 'true');
 			setDropdownHeight();
 			if (clickAnywhereToClose) {
-				var newHandler
+				var newHandler;
 				setCloseHandler();
 			}
 			$(document).trigger(ns + 'Open');
 		}
 
 		function toggleDropdown(e) {
-			e.preventDefault()
-			e.stopPropagation()
+			e.preventDefault();
+			e.stopPropagation();
 			if ($dropdown.data('status') =='closed') {
 				function setStatus() {
 					newStatus = "closed"
