@@ -1,5 +1,3 @@
-
-
 (function (gbl, $) {
 	'use strict';
 	gbl.dropdown = function (options) {
@@ -7,7 +5,7 @@
 		var $dropdown = options.dropdown,
 			$toggle = options.toggleButton,
 			ns = options.namespace,
-			controlsMegaMenu = (options.controlsMegaMenu && options.controlsMegaMenu === false)? false: true,
+			controlsMegaMenu = (options.controlsMegaMenu && options.controlsMegaMenu === false) ? false : true,
 			clickAnywhereToClose = (options.clickAnywhereToClose && options.clickAnywhereToClose === false) ? false : true,
 			transitionEnd = gbl.utilities.whichTransitionEvent();
 
@@ -45,7 +43,7 @@
 			setDropdownHeight();
 			$dropdown.data("status", 'closed');
 			$dropdown.removeClass('gbl_dropdown_active');
-			Array.prototype.foreach = function(cb) {
+			Array.prototype.foreach = function (cb) {
 				for (var i = 0; i < this.length; ++i) {
 					cb(this[i]);
 				}
@@ -79,7 +77,7 @@
 		function toggleDropdown(e) {
 			e.preventDefault();
 			e.stopPropagation();
-			if ($dropdown.data('status') =='closed') {
+			if ($dropdown.data('status') == 'closed') {
 				open();
 			} else {
 				close();
@@ -95,13 +93,11 @@
 					$dropdown.css('height', 'auto');
 				}
 			});
-
-			$toggle.on('click', toggleDropdown);
-			e.open = open;
-			e.close = close;
-			e.setDropdownHeight = setDropdownHeight;
 		}
 
-	}
-	(window.gbl || {}, jQuery);
-});
+		$toggle.on('click', toggleDropdown);
+		this.open = open;
+		this.close = close;
+		this.setDropdownHeight = setDropdownHeight;
+	};
+}(window.gbl || {}, jQuery));
