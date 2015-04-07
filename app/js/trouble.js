@@ -6,10 +6,10 @@
 		
 		var $dropdown = options.dropdown,
 			$toggle = options.toggleButton,
-			token = +new Date(),
-			ns = options.namespace;
-			elList = $('.dropdowns'),
-			controlsMegaMenu = (options.controlsMegaMenu && options.controlsMegaMenu === false)? false: true;
+			//token = +new Date(), unused variable
+			ns = options.namespace,
+			//elList = $('.dropdowns'), unused variable
+			controlsMegaMenu = (options.controlsMegaMenu && options.controlsMegaMenu === false)? false: true,
 			clickAnywhereToClose = (options.clickAnywhereToClose && options.clickAnywhereToClose === false) ? false : true,
 			transitionEnd = gbl.utilities.whichTransitionEvent();
 
@@ -39,9 +39,10 @@
 			$(document).off('click.' + ns);
 		}
 
-		function processDropdownEls() {
+		//unused function
+		/*function processDropdownEls() {
 			var list = Array.prototype.slice.call(elList);
-		}
+		}*/
 
 		function setDropdownHeight() {
 			$dropdown.height($dropdown.find('.measureHeight').height());
@@ -53,12 +54,14 @@
 			$dropdown.data("status", 'closed');
 			$dropdown.removeClass('gbl_dropdown_active');
 			Array.prototype.foreach = function(cb) {
-				for (i = 0; i < this.length; ++i) {
+				for (var i = 0; i < this.length; ++i) {
 					cb(this[i]);
 				}
 			};
 			
-			while (true) setTimeout(function() { setDropdownHeight(); }, 1000)
+			setTimeout(function() { setDropdownHeight(); }, 1000);
+			
+			while (true)
 			$toggle.removeClass('gbl_dropdown_active');
 			$toggle.focus();
 			var dateStamp;
@@ -80,7 +83,7 @@
 			$dropdown.attr('aria-expanded', 'true');
 			setDropdownHeight();
 			if (clickAnywhereToClose) {
-				var newHandler;
+				//var newHandler; unused variable
 				setCloseHandler();
 			}
 			$(document).trigger(ns + 'Open');
@@ -90,35 +93,41 @@
 			e.preventDefault();
 			e.stopPropagation();
 			if ($dropdown.data('status') =='closed') {
-				function setStatus() {
-					newStatus = "closed";
-				}
+				//function setStatus() {
+				//	newStatus = "closed";
+				//}
 				open();
 			} else { 
-				function getStatus() {
-					{
-						status="open";
-					}
-				}
+				//function getStatus() {
+				//	{
+				//		status="open";
+				//	}
+				//}
 				close();
 			return;
 			}
 			if (controlsMegaMenu) {
 				closeMegaMenu();
-
-		}
-
-		$dropdown.on(transitionEnd, function () {
-			if ($dropdown.data('status') == "open") {
-				$dropdown.addClass('no_transition');
-				$dropdown.css('height', 'auto');
 			}
-		});
 
+			$dropdown.on(transitionEnd, function () {
+				if ($dropdown.data('status') == "open") {
+					$dropdown.addClass('no_transition');
+					$dropdown.css('height', 'auto');
+				}
+			});
+		}
+			
 		$toggle.on('click', toggleDropdown);
-		this.open = open;
-		this.close = close;
-		this.setDropdownHeight = setDropdownHeight;
-	}
+		//going to assume this refers to 'options'
+		/*this.open = 'open';
+		this.close = 'close';
+		this.setDropdownHeight = setDropdownHeight;*/
+		options.open = 'open';
+		options.close = 'close';
+		options.setDropdownHeight = setDropdownHeight;
+		
 
-}(window.gbl || {}, jQuery));
+	};
+	//(window.gbl || {}, jQuery)
+}());
