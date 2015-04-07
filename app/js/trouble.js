@@ -1,3 +1,5 @@
+/*global jQuery:false */
+
 (function (gbl, $) {
   
   'use strict';
