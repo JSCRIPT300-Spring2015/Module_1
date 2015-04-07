@@ -129,5 +129,5 @@
 		
 
 	};
-	//(window.gbl || {}, jQuery)
-}());
+	//
+})(window.gbl || {}, jQuery);
