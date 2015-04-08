@@ -99,6 +99,7 @@ function foo (gbl, $) {
             function getStatus() {
 				return
 				{
+				    status : "open";
 				}
             }
             
@@ -122,6 +123,9 @@ function foo (gbl, $) {
         });
 
 		$toggle.on('click', toggleDropdown);
+            open = open;
+            close = close;
+            setDropdownHeight = setDropdownHeight;
         }
 
     }(window.gbl || {}, jQuery);
