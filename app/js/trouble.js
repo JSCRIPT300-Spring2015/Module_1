@@ -1,8 +1,8 @@
-(function (gbl, $) {
+(function(gbl, $) {
 
-  'use strict';
+	'use strict';
   
-	gbl.dropdown = function (options) {
+	gbl.dropdown = function(options) {
 		
 		/*
 		*  Added missing semicolons
@@ -12,13 +12,13 @@
 		*  Removed unused variables token and elList
 		*/
 		var $dropdown = options.dropdown;
-		var	$toggle = options.toggleButton;
-		var	ns = options.namespace;
-		var	controlsMegaMenu = (options.controlsMegaMenu && 
-		    	options.controlsMegaMenu === false)? false: true;
-		var	clickAnywhereToClose = (options.clickAnywhereToClose && 
-		    	options.clickAnywhereToClose === false) ? false : true;
-		var	transitionEnd = gbl.utilities.whichTransitionEvent();
+		var $toggle = options.toggleButton;
+		var ns = options.namespace;
+		var controlsMegaMenu = (options.controlsMegaMenu && 
+				options.controlsMegaMenu === false)? false: true;
+		var clickAnywhereToClose = (options.clickAnywhereToClose && 
+				options.clickAnywhereToClose === false) ? false : true;
+		var transitionEnd = gbl.utilities.whichTransitionEvent();
 
 		/*
 		*  Added missing semicolons
@@ -46,9 +46,7 @@
 			$(document).off('click.' + ns);
 		}
 
-		/*
-		*  Removed unnecessary function processDropdownEls()
-		*/
+		//  Removed unnecessary function processDropdownEls()
 
 		function setDropdownHeight() {
 
@@ -74,7 +72,9 @@
 				$dropdown.removeClass('no_transition');
 				$dropdown.css('height', 0);
 			}, 50);
+
 			removeCloseHandler();
+
 			$(document).trigger(ns + 'Close');
 		}
 
@@ -86,12 +86,12 @@
 		*  Changed length call to boolean instead of comparison
 		*/
 		function setCloseHandler() {
+
 			$(document).on('click.' + ns, function(e) {
-        
 				var $clicked = $(e.target);
         
-				if (!$clicked.is($dropdown) && (!$clicked.parents().filter(
-						$dropdown).length)) {
+				if (!$clicked.is($dropdown) &&
+						(!$clicked.parents().filter($dropdown).length)) {
 					close();
 				}
 			});
@@ -112,9 +112,11 @@
 			$dropdown.attr('aria-expanded', 'true');
 
 			setDropdownHeight();
+
 			if (clickAnywhereToClose) {
-        		setCloseHandler();
+				setCloseHandler();
 			}
+
 			$(document).trigger(ns + 'Open');
 		}
 
@@ -128,38 +130,40 @@
 
 			e.preventDefault();
 			e.stopPropagation();
+
 			if ($dropdown.data('status') === 'closed') {
 				open();
 			} else {
 				close();
-        	}
+			}
+
 			if (controlsMegaMenu) {
 				closeMegaMenu();
-      		}
+			}
 		}
 
 		/*
 		*  Used strict comparison
 		*/
 		$dropdown.on(transitionEnd, function() {
-
 			if ($dropdown.data('status') === 'open') {
 				$dropdown.addClass('no_transition');
 				$dropdown.css('height', 'auto');
 			}
 		});
 
-      	$toggle.on('click', toggleDropdown);
+		$toggle.on('click', toggleDropdown);
 
 		this.open = open;
 		this.close = close;
 		this.setDropdownHeight = setDropdownHeight;
 	};
-
 }(window.gbl || {}, jQuery));
 
 /*  Notes
 *
+*  Space before function parens? airbnb says no...
+*  Blank line after function use?  airbnb says no...
 *  Ok to use static text instead of creating a dataConfig object?
 *  Ok to pass event around for toggleDropdown and setCloseHandler?
 *  No animation on open()?
