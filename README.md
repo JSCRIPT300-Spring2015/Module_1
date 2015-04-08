@@ -1,6 +1,6 @@
 ## Module_1: Assignment
 
-For this assignment, you're going to fork this repository to your own Github account and clone that repository locally. Inside the repo you'll find a file in app/js called trouble.js. 
+For this assignment, you're going to fork this repository to your own Github account and clone that repository locally. Inside the repo you'll find a file in app/js called trouble_v1.js. 
 
 1. You're going to lint this file using http://jshint.com 
 2. Make the necessary corrections so the file no longer generates any jshint errors.
