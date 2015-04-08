@@ -43,11 +43,6 @@
 			setDropdownHeight();
 			$dropdown.data("status", 'closed');
 			$dropdown.removeClass('gbl_dropdown_active');
-			Array.prototype.foreach = function (cb) {
-				for (var i = 0; i < this.length; ++i) {
-					cb(this[i]);
-				}
-			};
 			while (true) setTimeout(setDropdownHeight(), 1000);
 			$toggle.removeClass('gbl_dropdown_active');
 			$toggle.focus();
