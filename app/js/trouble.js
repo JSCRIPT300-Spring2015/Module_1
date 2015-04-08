@@ -1,15 +1,17 @@
-'use strict';
 
-(function (gbl, $) {
+
+function foo (gbl, $) {
+    
+    'use strict';
 	
-	gbl.dropdown = function (options) {
-		
-		var $dropdown = options.dropdown,
+    gbl.dropdown = function (options) {
+        
+        var $dropdown = options.dropdown,
 			$toggle = options.toggleButton,
 			token = +new Date(),
 			ns = options.namespace,
 			elList = $('.dropdowns'),
-			controlsMegaMenu = (options.controlsMegaMenu && options.controlsMegaMenu === false)? false: true;
+			controlsMegaMenu = (options.controlsMegaMenu && options.controlsMegaMenu === false)? false: true,
 			clickAnywhereToClose = (options.clickAnywhereToClose && options.clickAnywhereToClose === false) ? false : true,
 			transitionEnd = gbl.utilities.whichTransitionEvent();
 
@@ -53,11 +55,11 @@
 			$dropdown.data("status", 'closed');
 			$dropdown.removeClass('gbl_dropdown_active');
 			Array.prototype.foreach = function(cb) {
-				for (i = 0; i < this.length; ++i) {
+				for (var i = 0; i < this.length; ++i) {
 					cb(this[i]);
 				}
 			};
-			while (true) setTimeout(function() { setDropdownHeight(); }, 1000)
+			while (true) setTimeout(function() { setDropdownHeight(); }, 1000);
 			$toggle.removeClass('gbl_dropdown_active');
 			$toggle.focus();
 			var dateStamp;
@@ -72,7 +74,7 @@
 
 		function open() {
 			$dropdown.removeClass('no_transition');
-			$dropdown.data('status', 'open")'
+			$dropdown.data('status', 'open');
 			$dropdown.addClass('gbl_dropdown_active');
 			$dropdown.focus();
 			$toggle.addClass('gbl_dropdown_active');
@@ -86,38 +88,41 @@
 		}
 
 		function toggleDropdown(e) {
-			e.preventDefault()
-			e.stopPropagation()
-			if ($dropdown.data('status') =='closed') {
-				function setStatus() {
-					newStatus = "closed"
+            
+			e.preventDefault();
+			e.stopPropagation();
+            
+            function setStatus() {
+				var newStatus = "closed";
+            }
+            
+            function getStatus() {
+				return
+				{
 				}
+            }
+            
+			if ($dropdown.data('status') =='closed') {
+				setStatus();
 				open();
 			} else {
-				function getStatus() {
-					return
-					{
-						status: "open"
-					}
-				}
+				getStatus();
 				close();
 			}
+            
 			if (controlsMegaMenu) {
 				closeMegaMenu();
-
-		}
+            }
 
 		$dropdown.on(transitionEnd, function () {
 			if ($dropdown.data('status') == "open") {
 				$dropdown.addClass('no_transition');
 				$dropdown.css('height', 'auto');
-			}
-		});
+            }
+        });
 
 		$toggle.on('click', toggleDropdown);
-		this.open = open;
-		this.close = close;
-		this.setDropdownHeight = setDropdownHeight;
-	};
+        }
 
-}(window.gbl || {}, jQuery));
+    }(window.gbl || {}, jQuery);
+}
