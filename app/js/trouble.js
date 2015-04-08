@@ -1,15 +1,17 @@
 /*global jQuery:false */
 
 (function (gbl, $) {
-  
+
   'use strict';
-	
+  
 	gbl.dropdown = function (options) {
-    
+		
 		var $dropdown = options.dropdown,
-			$toggle = options.toggleButton,			
-			ns = options.namespace,			
-			controlsMegaMenu = (options.controlsMegaMenu && options.controlsMegaMenu === false) ? false : true,
+			$toggle = options.toggleButton,
+			//token = +new Date(), // comment out unused varible
+			ns = options.namespace,
+			//elList = $('.dropdowns'), // comment out unused varible
+			controlsMegaMenu = (options.controlsMegaMenu && options.controlsMegaMenu === false)? false: true,
 			clickAnywhereToClose = (options.clickAnywhereToClose && options.clickAnywhereToClose === false) ? false : true,
 			transitionEnd = gbl.utilities.whichTransitionEvent();
 
@@ -37,7 +39,11 @@
 
 		function removeCloseHandler() {
 			$(document).off('click.' + ns);
-		}		
+		}
+	  // comment out unused function
+		/* function processDropdownEls() {
+			var list = Array.prototype.slice.call(elList);
+		}*/
 
 		function setDropdownHeight() {
 			$dropdown.height($dropdown.find('.measureHeight').height());
@@ -74,7 +80,8 @@
 			$toggle.addClass('gbl_dropdown_active');
 			$dropdown.attr('aria-expanded', 'true');
 			setDropdownHeight();
-			if (clickAnywhereToClose) {				
+			if (clickAnywhereToClose) {
+				//var newHandler;
 				setCloseHandler();
 			}
 			$(document).trigger(ns + 'Open');
@@ -82,15 +89,26 @@
 
 		function toggleDropdown(e) {
 			e.preventDefault();
-			e.stopPropagation();      
+			e.stopPropagation();
+      // comment out unused fucntion
+      /*function setStatus() {
+					var newStatus = "closed";
+			}
+      function getStatus() {
+					return {
+						status: "open"
+					};
+			}*/
+      
 			if ($dropdown.data('status') =='closed') {				
 				open();
-			} else {				
+			} else {			
 				close();
 			}
 			if (controlsMegaMenu) {
 				closeMegaMenu();
       }
+
 		}
 
 		$dropdown.on(transitionEnd, function () {
@@ -107,3 +125,4 @@
 	};
 
 }(window.gbl || {}, jQuery));
+  
