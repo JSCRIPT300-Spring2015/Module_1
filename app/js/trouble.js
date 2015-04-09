@@ -1,21 +1,14 @@
 (function (gbl, $) {
 
-  'use strict';
-  
+	'use strict';	
+	
 	gbl.dropdown = function (options) {
-    
 		
 		var $dropdown = options.dropdown,
 			$toggle = options.toggleButton,
-			token = +new Date(),
 			ns = options.namespace,
-			elList = $('.dropdowns'),
-            controlsMegaMenu = function() {
-              return (options.controlsMegaMenu && options.controlsMegaMenu === false)? false: true;
-            },
-            clickAnywhereToClose = function() {
-              return (options.clickAnywhereToClose && options.clickAnywhereToClose === false) ? false : true;
-            },
+			controlsMegaMenu = (options.controlsMegaMenu && options.controlsMegaMenu === false) ? false : true,
+			clickAnywhereToClose = (options.clickAnywhereToClose && options.clickAnywhereToClose === false) ? false : true,
 			transitionEnd = gbl.utilities.whichTransitionEvent();
 
 
@@ -44,10 +37,6 @@
 			$(document).off('click.' + ns);
 		}
 
-		function processDropdownEls() {
-			var list = Array.prototype.slice.call(elList);
-		}
-
 		function setDropdownHeight() {
 			$dropdown.height($dropdown.find('.measureHeight').height());
 		}
@@ -58,7 +47,7 @@
 			$dropdown.data("status", 'closed');
 			$dropdown.removeClass('gbl_dropdown_active');
 			Array.prototype.foreach = function(cb) {
-				for (i = 0; i < this.length; ++i) {
+				for (var i = 0; i < this.length; ++i) {
 					cb(this[i]);
 				}
 			};
@@ -84,34 +73,23 @@
 			$dropdown.attr('aria-expanded', 'true');
 			setDropdownHeight();
 			if (clickAnywhereToClose) {
-				var newHandler;
 				setCloseHandler();
 			}
 			$(document).trigger(ns + 'Open');
 		}
-    
-	    function setStatus() {
-	      newStatus = "closed";
-	    }
-	    
-	    function getStatus() {
-	      return {
-	        status: "open"
-	      };
-	    }
 
 		function toggleDropdown(e) {
 			e.preventDefault();
 			e.stopPropagation();
+      
 			if ($dropdown.data('status') =='closed') {
-				setStatus();
 				open();
 			} else {
-				getStatus();
 				close();
 			}
 			if (controlsMegaMenu) {
 				closeMegaMenu();
+      }
 		}
 
 		$dropdown.on(transitionEnd, function () {
@@ -125,6 +103,6 @@
 		this.open = open;
 		this.close = close;
 		this.setDropdownHeight = setDropdownHeight;
-	}
+	};
 
 }(window.gbl || {}, jQuery));
