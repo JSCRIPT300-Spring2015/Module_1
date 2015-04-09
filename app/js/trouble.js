@@ -1,9 +1,5 @@
-(function() {
-    'use strict';
-}());
-
 (function(gbl, $) {
-
+	'use strict';
     gbl.dropdown = function(options) {
 
         var $dropdown = options.dropdown,
