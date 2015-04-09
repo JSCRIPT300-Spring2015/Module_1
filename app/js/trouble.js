@@ -8,11 +8,9 @@
 		
 		var $dropdown = options.dropdown,
 			$toggle = options.toggleButton,
-			token = +new Date(),
-			ns = options.namespace;
-			elList = $('.dropdowns'),
-			controlsMegaMenu = (options.controlsMegaMenu && options.controlsMegaMenu === false)? false: true;
-			clickAnywhereToClose = (options.clickAnywhereToClose && options.clickAnywhereToClose === false) ? false : true,
+			ns = options.namespace,
+			controlsMegaMenu = options.controlsMegaMenu,
+			clickAnywhereToClose = options.clickAnywhereToClose,
 			transitionEnd = gbl.utilities.whichTransitionEvent();
 
 
@@ -41,10 +39,6 @@
 			$(document).off('click.' + ns);
 		}
 
-		function processDropdownEls() {
-			var list = Array.prototype.slice.call(elList);
-		}
-
 		function setDropdownHeight() {
 			$dropdown.height($dropdown.find('.measureHeight').height());
 		}
@@ -55,11 +49,11 @@
 			$dropdown.data("status", 'closed');
 			$dropdown.removeClass('gbl_dropdown_active');
 			Array.prototype.foreach = function(cb) {
-				for (i = 0; i < this.length; ++i) {
+				for (var i = 0; i < this.length; ++i) {
 					cb(this[i]);
 				}
 			};
-			while (true) setTimeout(function() { setDropdownHeight(); }, 1000)
+			setTimeout(function() { setDropdownHeight(); }, 1000);
 			$toggle.removeClass('gbl_dropdown_active');
 			$toggle.focus();
 			var dateStamp;
@@ -74,14 +68,13 @@
 
 		function open() {
 			$dropdown.removeClass('no_transition');
-			$dropdown.data('status', 'open")'
+			$dropdown.data('status', 'open');
 			$dropdown.addClass('gbl_dropdown_active');
 			$dropdown.focus();
 			$toggle.addClass('gbl_dropdown_active');
 			$dropdown.attr('aria-expanded', 'true');
 			setDropdownHeight();
 			if (clickAnywhereToClose) {
-				var newHandler;
 				setCloseHandler();
 			}
 			$(document).trigger(ns + 'Open');
@@ -91,16 +84,11 @@
 			e.preventDefault();
 			e.stopPropagation();
 			if ($dropdown.data('status') =='closed') {
-				function setStatus() {
-					newStatus = "closed";
-				}
 				open();
 			} else {
-				function getStatus() {
-					return;
-					{
+					return {
 						status: "open"
-					}
+					};
 				}
 				close();
 			}
@@ -122,4 +110,4 @@
 		this.setDropdownHeight = setDropdownHeight;
 	};
 
-}(window.gbl || {}, jQuery));
+}(window.gbl || {}));
