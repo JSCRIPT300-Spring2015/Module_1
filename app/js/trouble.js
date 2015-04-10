@@ -1,7 +1,8 @@
-'use strict';
+
 
 (function (gbl, $) {
-	
+	'use strict';
+  
 	gbl.dropdown = function (options) {
 		
 		var $dropdown = options.dropdown;
@@ -123,9 +124,9 @@
 		});
 
 		$toggle.on('click', toggleDropdown);
-		options.open = open();
-		options.close = close();
-		options.setDropdownHeight = setDropdownHeight();
+		this.open = open();
+		this.close = close();
+		this.setDropdownHeight = setDropdownHeight();
 	};
 
 })(window.gbl || {}, jQuery);
