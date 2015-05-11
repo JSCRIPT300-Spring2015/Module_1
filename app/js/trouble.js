@@ -1,3 +1,6 @@
+// MODULE 01 - USING MODULE PATTERN - JSHINTING EXERCISE
+// Eric Gould - resyncing, May 11, 2015
+
 (function (gbl, $) {
 
   'use strict';
@@ -7,7 +10,7 @@
 		var $dropdown = options.dropdown,
 			$toggle = options.toggleButton,
 			token = +new Date(),
-			ns = options.namespace,
+			ns = options.namespace;
 			elList = $('.dropdowns'),
 			controlsMegaMenu = options.controlsMegaMenu,
 			clickAnywhereToClose = options.clickAnywhereToClose,
