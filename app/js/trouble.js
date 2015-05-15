@@ -1,5 +1,5 @@
-// MODULE 01 - USING MODULE PATTERN - JSHINTING EXERCISE
-// Eric Gould - resyncing, May 11, 2015
+// MODULE 01 - JSHINT LINTING EXERCISE
+// Eric Gould - May 14, 2015
 
 (function (gbl, $) {
 
@@ -9,13 +9,13 @@
 
 		var $dropdown = options.dropdown,
 			$toggle = options.toggleButton,
-			token = +new Date(),
 			ns = options.namespace;
-			elList = $('.dropdowns'),
-			controlsMegaMenu = options.controlsMegaMenu,
-			clickAnywhereToClose = options.clickAnywhereToClose,
 			transitionEnd = gbl.utilities.whichTransitionEvent();
-
+    
+    var transitionEnd;
+    var clickAnywhereToClose;
+    var controlsMegaMenu;
+    
 
 		$dropdown.addClass('gbl_dropdown').data('status', 'closed');
 		$toggle.addClass('gbl_dropdown_trigger');
@@ -42,10 +42,7 @@
 			$(document).off('click.' + ns);
 		}
 
-		function processDropdownEls() {
-			var list = Array.prototype.slice.call(elList);
-		}
-
+		
 		function setDropdownHeight() {
 			$dropdown.height($dropdown.find('.measureHeight').height());
 		}
@@ -79,7 +76,6 @@
 			$dropdown.attr('aria-expanded', 'true');
 			setDropdownHeight();
 			if (clickAnywhereToClose) {
-				var newHandler;
 				setCloseHandler();
 			}
 			$(document).trigger(ns + 'Open');
